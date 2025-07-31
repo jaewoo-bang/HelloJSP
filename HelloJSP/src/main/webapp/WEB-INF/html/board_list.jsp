@@ -1,14 +1,13 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    
+
 <jsp:include page="includes/header.jsp" />
 
-<%
-      // 강제형변환(casting)
-    
-      %>
-<!--검색-->
+
+<%-- 검색 --%>
+<br>
 <div class="center">
 	<form action="boardList.do">
 		<div class="row">
@@ -23,15 +22,15 @@
 			<div class="col-sm-5">
 				<input type="text" name="keyword" value="${keyword }" class="form-control">
 			</div>
-			<div class="class-sm-3">
-				<input type="submit" value="조회" class="btn btn-success">
+			<div class="col-sm-3">
+				<input type="submit" value="조회" class="btn btn-primary">
 			</div>
 		</div>
 	</form>
 </div>
-<!--검색-->
+<br>
 <h3>게시글 목록</h3>
-<table class='table table-striped'>
+<table class="table table-striped">
 	<thead>
 		<tr>
 			<th>글번호</th>
@@ -42,59 +41,61 @@
 	</thead>
 	<tbody>
 		<c:forEach var="board" items="${board_list }">
-			<tr>
-				<td><c:out value="${board.boardNo }" /></td>
-				<td><a href='board.do?bno="${board.boardNo }"'>${board.title}</a></td>
-				<td><c:out value="${board.writer}" /></td>
-				<td><c:out value="${board.viewCnt }" /></td>
-			</tr>
+		<tr>
+			<td><c:out value="${board.boardNo }" /></td>
+			<td><a href='board.do?bno=${board.boardNo }'>${board.title }</a></td>
+			<td><c:out value="${board.writer }" /></td>
+			<td><c:out value="${board.viewCnt }" /></td>
+		</tr>
 		</c:forEach>
 	</tbody>
 </table>
-<!-- paging.. -->
-<nav aria-label="Page navigation example">
-	<ul class="pagination justify-content-center">
-		<!-- 이전페이지 -->
-		<c:choose>
-			<c:when test="${paging.previous }">
-				<li class="page-item">
-				<a class="page-link"
-					href="boardList.do?searchCondition=${searchCondition }$keyword=${keyword }$page=${paging.start - 1 }">Previous</a>
-					</li>
 
-			</c:when>
-		</c:choose>
-		<!-- paging 정보를 받아서 링크생성 -->
-		<c:forEach var="p" begin="${paging.start }" end="${paging.end }">
-			<c:choose>
-				<c:when test="${paging.currPage eq p }">
+<!-- paging -->
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    <c:choose>
+    	<c:when test="${paging.previous}">
+		    <li class="page-item">
+		      <a class="page-link" href="boardList.do?searchCondition=${searchCondition}&keyword=${keyword}&page=${paging.start - 1}">Previous</a>
+		    </li>
+	    </c:when>
+	    <c:otherwise>
+	    	<li class="page-item disabled">
+		      <a class="page-link">Previous</a>
+		    </li>
+	    </c:otherwise>
+    </c:choose>
+    
+    <!-- paging  정보를 받아서 링크 생성 -->
+	<c:forEach var="p" begin="${paging.start }" end="${paging.end }">
+	  	<c:choose>
+	  		<c:when test="${paging.currPage eq p}">	  		
 				<li class="page-item active" aria-current="page">
 					<span class="page-link">${p }</span>
-					</li>
-				</c:when>
-				<c:otherwise>
-				<li class="page-item">
-				<a class="page-link" 
-				href="boardList.do?searchCondition=${searchCondition }$keyword=${keyword }$page=${p}" >${p }</a>
 				</li>
-			  </c:otherwise>
-			</c:choose>
-		 </c:forEach>
-		 
-		<!-- 이후 페이지 버튼 -->
-		<c:choose>
-			<c:when test="${paging.next }">
-				<li class="page-item">
-				<a class="page-link"
-					href="boardList.do?searchCondition=${searchCondition }&keyword=${keyword }&page=${paging.end + 1}">Next</a>
-				</li>
-			</c:when>
-			<c:otherwise>
-				<li class="page-item disabled">
-				<a class="page-link">Next</a>
-				</li>
-		</c:otherwise>
-		</c:choose>
-	</ul>
+	  		</c:when>
+	  		<c:otherwise>
+	  			<li class="page-item"><a class="page-link" href="boardList.do?searchCondition=${searchCondition}&keyword=${keyword}&page=${p }">${p }</a></li>
+	  		</c:otherwise>
+	  	</c:choose>
+	</c:forEach>
+	
+	<!-- 이후 페이지 여부 -->
+	
+	<c:choose>
+    	<c:when test="${paging.next }">
+		    <li class="page-item">
+		      <a class="page-link" href="boardList.do?searchCondition=${searchCondition}&keyword=${keyword}&page=${paging.end + 1}">Next</a>
+		    </li>
+	    </c:when>
+	    <c:otherwise>
+	    	<li class="page-item disabled">
+		      <a class="page-link">Next</a>
+		    </li>
+	    </c:otherwise>
+    </c:choose>
+  </ul>
 </nav>
+
 <jsp:include page="includes/footer.jsp" />
