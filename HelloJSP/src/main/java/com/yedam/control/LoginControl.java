@@ -32,6 +32,8 @@ public class LoginControl implements Control {
 			// 정상 id, pw 입력.
 			HttpSession session = req.getSession(); //
 			session.setAttribute("logId", id); //속성(logId)=로그인아이디.
+			session.setAttribute("auth", member.getResponsibility()); //user/Admin
+			
 			resp.sendRedirect("boardList.do");
 		}
 		

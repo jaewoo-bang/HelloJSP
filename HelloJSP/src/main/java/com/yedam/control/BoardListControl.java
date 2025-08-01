@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.yedam.common.Control;
 import com.yedam.common.PageDTO;
@@ -43,7 +44,25 @@ public class BoardListControl implements Control {
 		req.setAttribute("paging", paging);
 		req.setAttribute("searchCondition", sc);
 		req.setAttribute("keyword", kw);
+		
+		// 권한에 따라 템플릿 적용.
+		HttpSession session = req.getSession();
+		String authority = (String) session.getAttribute("auth");
+		
+		// 손님이면 일반사용자 템플릿을사용.
+		if(authority == null) {
+			req.getRequestDispatcher("user/board_list.tiles")//
+					.forward(req, resp);
+			return; //메소드 종료
+		}
+		
+		//일반/관리 권한.
+		if (authority.equals("User")) { //일반사용자
 		// 요청 재지정.
-		req.getRequestDispatcher("WEB-INF/html/board_list.jsp").forward(req, resp);
-	}
-}
+		req.getRequestDispatcher("user/board_list.tiles").forward(req, resp);
+		} else if(authority.equals("Admin")) { //관리자
+			req.getRequestDispatcher("manager/board_list.tiles")//
+					.forward(req, resp);
+		}
+	}//end of execute
+}//end of class
