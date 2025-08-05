@@ -27,11 +27,11 @@ console.log(json);
 //console.log(json);
 
 // 반복문(forEach) => 성별:Female 급여: 6000 이상인 사람을 출력.
-str.forEach(elem => {
-	let gen = elem.Female
+//str.forEach(elem => {
+//	let gen = elem.Female
 	
 		
-}		
+//}		
 
 	
 

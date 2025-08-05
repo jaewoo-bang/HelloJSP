@@ -10,7 +10,7 @@
 </head>
 <body>
 
-	<jsp:forward page="boardList.do"></jsp:forward>
+	<jsp:forward page="boardList.do" />
 	<h3>Hello, JSP</h3>
 	<c:set var="name" value="홍길동"></c:set>
 	<c:out value="${name}"></c:out>

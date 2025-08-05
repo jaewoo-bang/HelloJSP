@@ -7,8 +7,10 @@
       <pattern>%5level [%thread] - %msg%n</pattern>
     </encoder>
   </appender>
-
-  <logger name="com.yedam.mapper.boardMapper">
+<logger name="com.yedam.mapper.boardMapper">
+    <level value="debug"/>
+  </logger>
+  <logger name="com.yedam.mapper.ReplyMapper">
     <level value="debug"/>
   </logger>
   
