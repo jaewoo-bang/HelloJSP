@@ -24,4 +24,4 @@ fetch('js/MOCK_DATA.json') // Promise 객체.
 			td.appendChild(btn);
 			tr.appendChild(td);
 			document.querySelector('#show tbody').appendChild(tr);	
-	
+	});
