@@ -14,6 +14,11 @@
 	and b.rn <= (#{page} * 5)
 	]]>
 	</select>
+	<select id="selectCount" resultType="int">
+		   select count(1)
+		   from tbl_reply
+		   where board_no = #{boardNo} 
+	</select>
 	
 	<delete id="deleteReply" parameterType="int">
 	delete from tbl_reply

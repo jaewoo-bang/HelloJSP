@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.yedam.common.DBUtil;
 import com.yedam.mapper.ReplyMapper;
+import com.yedam.vo.EventVO;
 import com.yedam.vo.ReplyVO;
 
 public class ReplyServiceImpl implements ReplyService{
@@ -35,4 +36,31 @@ public class ReplyServiceImpl implements ReplyService{
 		}
 		return false;
 	}
+	@Override
+	public int replyCount(int boardNo) {
+		return mapper.selectCount(boardNo);
+	}
+	@Override
+	public boolean addEvent(EventVO event) {
+		int r = mapper.insertEvent(event);
+		if(r > 0) {
+			sqlSession.commit();
+			return true;
+		}
+		return false;
+	}
+	@Override
+	public boolean removeEvent(int eventId) {
+		int r = mapper.deleteEvent(eventId);
+		if(r > 0) {
+			sqlSession.commit();
+			return true;
+		}
+		return false;
+	}
+	@Override
+	public List<EventVO> eventList(EventVO event) {
+		return mapper.eventList();
+	}
+	
 }

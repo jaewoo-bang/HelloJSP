@@ -87,14 +87,18 @@ span {display: inline-block;}
 	</div>
 	<!-- 댓글목록. -->
 	<div class="content">
+	
 		<ul>
-			<li><span class="col-sm-2">글번호</span> 
+			<li>
+				<span class="col-sm-2">글번호</span> 
 				<span class="col-sm-5">내용</span>
 				<span class="col-sm-2">작성자</span> 
 				<span class="col-sm-2">삭제</span>
 				</li>
-			<li><hr /></li>
+				<li><hr /></li>
+				
 		</ul>
+		
 	</div>
 	<!-- 댓글페이징. -->
 	<div class="footer">
