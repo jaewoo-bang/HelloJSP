@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.control.AddBoardControl;
+import com.yedam.control.AddEventControl;
 import com.yedam.control.AddReplyControl;
 import com.yedam.control.BoardControl;
 import com.yedam.control.BoardListControl;
@@ -69,6 +70,7 @@ public class FrontController extends HttpServlet {
 		// 기타.
 		map.put("/chartData.do", new ChartControl());
 		map.put("/eventList.do", new EventControl()); //이벤트 목록
+		map.put("/addEvent.do", new AddEventControl()); //이벤트 등록. {retCode:"OK"/"NG"}
 		
 	}
 	@Override

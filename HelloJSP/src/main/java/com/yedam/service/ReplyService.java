@@ -12,6 +12,6 @@ public interface ReplyService {
 	int replyCount(int boardNo); //댓글 건수 계산
 	//이벤트 목록, 추가, 삭제기능
 	boolean addEvent(EventVO event);	//일정 등록
-	boolean removeEvent(int eventId);	//일정 삭제
-	List<EventVO> eventList();			//일정 목록
+	boolean removeEvent(String title);	//일정 삭제
+	List<EventVO> eventList(EventVO event);			//일정 목록
 }

@@ -50,8 +50,8 @@ public class ReplyServiceImpl implements ReplyService{
 		return false;
 	}
 	@Override
-	public boolean removeEvent(int eventId) {
-		int r = mapper.deleteEvent(eventId);
+	public boolean removeEvent(String title) {
+		int r = mapper.deleteEvent(title);
 		if(r > 0) {
 			sqlSession.commit();
 			return true;
@@ -60,7 +60,7 @@ public class ReplyServiceImpl implements ReplyService{
 	}
 	@Override
 	public List<EventVO> eventList(EventVO event) {
-		return mapper.eventList();
+		return mapper.eventList(event);
 	}
 	
 }
